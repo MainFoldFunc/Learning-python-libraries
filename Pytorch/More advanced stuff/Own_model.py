@@ -1,16 +1,17 @@
 import torch
+import random
 from torch import nn
 import matplotlib.pyplot as plt
 
 # Dataset parameters
-weight = 5
-bias = 2
+weight = 50
+bias = 2.4
 
 start = 1
 end = 100
 step = 0.01
 X = torch.arange(start, end, step,  dtype=torch.float32).unsqueeze(dim=1)
-y = weight + X * bias * X**2
+y = weight + X * bias  
 
 # Normalize X and y
 X_min, X_max = X.min(), X.max()
@@ -31,10 +32,10 @@ class Not_lin_reg(nn.Module):
         self.bias = nn.Parameter(torch.randn(1, requires_grad=True))
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return self.weights + x * self.bias * x ** 2
+        return self.weights + x * self.bias 
 
 # Set seed for reproducibility
-torch.manual_seed(13)
+torch.manual_seed(random.randint(1, 44))
 
 # Initialize model
 model_1 = Not_lin_reg()
