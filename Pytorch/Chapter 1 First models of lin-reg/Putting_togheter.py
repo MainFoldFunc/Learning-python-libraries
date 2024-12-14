@@ -1,4 +1,5 @@
 import torch
+from pathlib import Path
 import numpy
 from torch import nn
 import matplotlib.pyplot as plt
@@ -51,7 +52,7 @@ losses, losses_t = [], []
 # Training loop
 loss = 1
 epoch = 0
-while loss > 1e-7:
+while loss > 1e-10:
     epoch += 1
     loss = training_loop(training_q, training_a, opt_func, loss_func, model_2)
     losses.append(loss)
@@ -60,6 +61,22 @@ while loss > 1e-7:
 
 print(f"Final Model Params:")
 print(model_2.state_dict())
+
+# Model dir #
+MODEL_DIR = Path("models")
+MODEL_DIR.mkdir(parents=True, exist_ok=True)
+
+# Model path #
+
+MODEL_NAME = "02_Own_model.pth"
+MODEL_SAVE_PATH = MODEL_DIR / MODEL_NAME
+
+# Save the state_dict() of model #
+
+print(f"Saving model to: {MODEL_SAVE_PATH}")
+torch.save(obj=model_2.state_dict(), f=MODEL_SAVE_PATH)
+
+
 
 # Plot predictions
 def plot_pred(tr_data=training_q, tr_ans=training_a, te_data=testing_q, te_ans=testing_a, pred=None):
