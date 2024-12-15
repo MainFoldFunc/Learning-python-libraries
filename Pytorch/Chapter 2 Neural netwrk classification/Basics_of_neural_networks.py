@@ -7,8 +7,8 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 
 # Custom dataset
-samples = 100000
-input_data, perfect_output = make_circles(samples, noise=0.54, random_state=13)
+samples = 10000
+input_data, perfect_output = make_circles(samples, noise=0.01, random_state=20)
 
 # Plot the dataset
 #plt.scatter(x=input_data[:, 0],
@@ -75,7 +75,7 @@ def plot_decision_boundary(model, X, y, epoch):
     plt.pause(0.001)  # Pause for a short time to allow the plot to update
 
 # Training loop parameters
-epochs = 100000
+epochs = 10000
 
 # Move data to the device
 training_q, testing_q = training_q.to(device), testing_q.to(device)
@@ -121,8 +121,8 @@ for epoch in range(epochs):
     if (epoch + 1) % 10 == 0 or epoch == 0:
         print(f"Epoch {epoch + 1}/{epochs} \t Loss: {loss:.4f} \t Train Acc: {train_accuracy:.2f}% \t Test Acc: {test_accuracy:.2f}%")
 
-    if test_accuracy > 99:
-        print(f"Early stopping at epoch {epoch + 1}: Test Accuracy > 99%")
+    if test_accuracy > 97:
+        print(f"Early stopping at epoch {epoch + 1}: Test Accuracy > 97%")
         break
 
 # Plot the loss curve
@@ -164,5 +164,5 @@ MODEL_DIR.mkdir(parents=True, exist_ok=True)
 MODEL_SAVE_PATH = MODEL_DIR / "circle_model.pth"
 
 torch.save(model_3.state_dict(), MODEL_SAVE_PATH)
-print(f"Model saved to {MODEL_SAVE_PATH}")
+print(f"Model saved to {MODEL_SAVE_PATH}") 
 
