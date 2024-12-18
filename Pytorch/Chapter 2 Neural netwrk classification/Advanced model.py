@@ -58,7 +58,7 @@ model_4 = model_4.to(device)
 
 # Define loss function and optimizer
 loss_func = nn.CrossEntropyLoss()
-opt_func = torch.optim.Adam(model_4.parameters(), lr=0.001)
+opt_func = torch.optim.SGD(params = model_4.parameters(), lr=0.001)
 
 ## Accuracy function ##
 def acc(y_true, y_pred):
