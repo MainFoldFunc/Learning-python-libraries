@@ -108,7 +108,7 @@ for epoch in tqdm(range(epochs)):
 train_time_end = time.time()
 print(f"Time that it took: {train_time_end - train_time_start:.2f} seconds")
 
-MODEL_DIR = Path("data")
+MODEL_DIR = Path("models")
 MODEL_DIR.mkdir(parents=True, exist_ok=True)
 MODEL_SAVE_PATH = MODEL_DIR / "MNIST_model.pth"
 
