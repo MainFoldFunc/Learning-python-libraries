@@ -126,6 +126,8 @@ for epoch in tqdm(range(epochs)):
     if test_loss > 97:
         print(f"Stopping because test loss is above 97%")
         break
+    if input() == "exit":
+        break
 
 # Timing the end of training
 train_time_stop = time.time()
