@@ -2,7 +2,6 @@ import torch
 from torch import nn
 from torch.utils.data import DataLoader
 from torchvision.transforms import ToTensor, Normalize, Compose
-from PIL import Image
 import matplotlib.pyplot as plt
 from datasets import load_dataset
 from tqdm import tqdm
@@ -17,9 +16,9 @@ transform = Compose([
     Normalize((0.5,), (0.5,))  # Normalize to mean=0.5, std=0.5
 ])
 
-# Collate function for DataLoader
+# Collate function for DataLoader (no need for Image.fromarray)
 def collate_fn(batch):
-    images = torch.stack([transform(Image.fromarray(x["image"])) for x in batch])
+    images = torch.stack([transform(x["image"]) for x in batch])  # Use ToTensor directly
     labels = torch.tensor([x["label"] for x in batch])
     return images, labels
 
