@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from datasets import load_dataset
 from tqdm import tqdm
 import time
-
+from pathlib import Path
 # Load MNIST dataset using Hugging Face `datasets` library
 mnist = load_dataset("mnist")
 
@@ -135,3 +135,11 @@ plt.grid()
 # Show plots
 plt.tight_layout()
 plt.show()
+
+# Save the model
+MODEL_DIR = Path("models")
+MODEL_DIR.mkdir(parents=True, exist_ok=True)
+MODEL_SAVE_PATH = MODEL_DIR / "MNIST_model.pth"
+
+torch.save(model_6.state_dict(), MODEL_SAVE_PATH)
+print(f"Model saved to {MODEL_SAVE_PATH}")
