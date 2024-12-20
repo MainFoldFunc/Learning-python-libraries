@@ -108,6 +108,12 @@ for epoch in tqdm(range(epochs)):
 train_time_end = time.time()
 print(f"Time that it took: {train_time_end - train_time_start:.2f} seconds")
 
+MODEL_DIR = Path("data")
+MODEL_DIR.mkdir(parents=True, exist_ok=True)
+MODEL_SAVE_PATH = MODEL_DIR / "MNIST_model.pth"
+
+torch.save(model_6.state_dict(), MODEL_SAVE_PATH)
+print(f"Model saved to {MODEL_SAVE_PATH}")
 # Plotting results
 completed_epochs = len(train_losses)
 
