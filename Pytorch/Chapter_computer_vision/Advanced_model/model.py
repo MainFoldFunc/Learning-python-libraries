@@ -101,7 +101,7 @@ for epoch in tqdm(range(epochs)):
     # Print epoch statistics
     print(f"Epoch {epoch+1}/{epochs} | Train Loss: {train_loss:.4f} | Test Loss: {test_loss:.4f} | Test Acc: {test_acc*100:.2f}%")
 
-    if test_loss > 96:
+    if test_acc > 96:
         break
 
 train_time_end = time.time()
