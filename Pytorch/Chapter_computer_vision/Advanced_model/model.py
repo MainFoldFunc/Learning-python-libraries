@@ -39,6 +39,7 @@ class Big_ass_module(nn.Module):
             nn.Linear(in_features=input_shape, out_features=hidden_layers),
             nn.ReLU(),
             nn.Linear(in_features=hidden_layers, out_features=output_shape),
+            nn.ReLU()
         )
 
     def forward(self, x):
